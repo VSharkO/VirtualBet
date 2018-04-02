@@ -3,17 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Randomizer : MonoBehaviour {
 
+public class Randomizer : MonoBehaviour {
+    public Canvas canvas;
 	// Use this for initialization
 	void Start () {
-		
-	}
+        makePairs();
+        
+        
+       
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    //klasa za klub
     class Club {
         private string ime;
         private int strengthHome;
@@ -77,18 +83,23 @@ public class Randomizer : MonoBehaviour {
 
     }
 
-    Club Barcelona = new Club("FC Barcelona", 10, 9,1);
-    Club Roma = new Club("AS Roma", 10, 9,2);
-    Club Sevilla = new Club("Sevilla FC", 10, 9,3);
-    Club Bayern = new Club("FC Bayern München", 10, 9,4);
-    Club Juventus = new Club("Juventus", 10, 9,5);
-    Club Real = new Club("Real Madrid", 10, 9,6);
-    Club Liverpool = new Club("Liverpool", 10, 9,7);
-    Club City = new Club("Manchester City FC", 10, 9,8);
-
-    ArrayList klub = new ArrayList();
+    //stvaranje kubova
     
+    
+    
+    //metoda koja pravi parove
     void makePairs() {
+        Club Barcelona = new Club("FC Barcelona", 10, 9, 1);
+        Club Roma = new Club("AS Roma", 10, 9, 2);
+        Club Sevilla = new Club("Sevilla FC", 10, 9, 3);
+        Club Bayern = new Club("FC Bayern München", 10, 9, 4);
+        Club Juventus = new Club("Juventus", 10, 9, 5);
+        Club Real = new Club("Real Madrid", 10, 9, 6);
+        Club Liverpool = new Club("Liverpool", 10, 9, 7);
+        Club City = new Club("Manchester City FC", 10, 9, 8);
+
+        ArrayList klub = new ArrayList();
+
         klub.Add(Barcelona);
         klub.Add(Roma);
         klub.Add(Sevilla);
@@ -117,5 +128,70 @@ public class Randomizer : MonoBehaviour {
         parovi[4, 1] = (Club)klub[set[7]];
         parovi[4, 2] = (Club)klub[set[8]];
     }
-    
+    //struktura koeficient
+    struct koef {
+        private float koef1;
+        private float koef2;
+        private float koefX;
+
+        public koef(float k1,float k2, float kX) {
+            koef1 = k1;
+            koef2 = k2;
+            koefX = kX;
+        }
+
+        public float getSetKoef1
+        {
+            get
+            {
+                //logic here 
+                return koef1;
+            }
+            set
+            {
+                //logic here
+                koef1 = value;
+            }
+
+        }
+
+        public float getSetKoef2
+        {
+            get
+            {
+                //logic here 
+                return koef2;
+            }
+            set
+            {
+                //logic here
+                koef2 = value;
+            }
+        }
+
+        public float getSetKoefX
+        {
+            get
+            {
+                //logic here 
+                return koefX;
+            }
+            set
+            {
+                //logic here
+                koefX = value;
+            }
+
+        }
+        
+    }
+
+    //metoda koja pravi koeficijente a predamo joj dva kluba
+     koef MakeKoef(Club klub1, Club klub2) {
+        koef koeficient = new koef();
+        koeficient.getSetKoef1 = (12/klub1.GetSetStrHome);
+        koeficient.getSetKoef2 = (12 / klub2.GetSetStrAway);
+        koeficient.getSetKoefX = 2 + (12 / klub2.GetSetStrAway)+ (12 / klub1.GetSetStrHome);
+        return koeficient;
+    }
 }
