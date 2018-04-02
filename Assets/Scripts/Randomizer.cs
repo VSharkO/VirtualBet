@@ -111,12 +111,12 @@ public class Randomizer : MonoBehaviour {
     //metoda koja pravi parove
     Club[,] makePairs() {
         Club Barcelona = new Club("FC Barcelona", 10, 9, 1);
-        Club Roma = new Club("AS Roma", 10, 9, 2);
-        Club Sevilla = new Club("Sevilla FC", 10, 9, 3);
-        Club Bayern = new Club("FC Bayern München", 10, 9, 4);
-        Club Juventus = new Club("Juventus", 10, 9, 5);
-        Club Real = new Club("Real Madrid", 10, 9, 6);
-        Club Liverpool = new Club("Liverpool", 10, 9, 7);
+        Club Roma = new Club("AS Roma", 7, 5, 2);
+        Club Sevilla = new Club("Sevilla FC", 8, 6, 3);
+        Club Bayern = new Club("FC Bayern München", 9, 8, 4);
+        Club Juventus = new Club("Juventus", 9, 8, 5);
+        Club Real = new Club("Real Madrid", 9, 9, 6);
+        Club Liverpool = new Club("Liverpool", 9, 8, 7);
         Club City = new Club("Manchester City FC", 10, 9, 8);
 
         ArrayList klub = new ArrayList();
@@ -210,10 +210,13 @@ public class Randomizer : MonoBehaviour {
 
     //metoda koja pravi koeficijente a predamo joj dva kluba
      koef MakeKoef(Club klub1, Club klub2) {
+        float rnd1 = Random.Range(1f, 2f);
+        float rnd2 = Random.Range(1f, 2f);
+        float rnd3 = Random.Range(1f, 2f);
         koef koeficient = new koef();
-        koeficient.getSetKoef1 = (12F/klub1.GetSetStrHome);
-        koeficient.getSetKoef2 = (12F/klub2.GetSetStrAway);
-        koeficient.getSetKoefX = (2F + (12F / klub2.GetSetStrAway)+ (12F / klub1.GetSetStrHome));
+        koeficient.getSetKoef1 = (12F/klub1.GetSetStrHome)+ (12F / klub2.GetSetStrHome)*rnd1;
+        koeficient.getSetKoef2 = 1f+(25F/klub2.GetSetStrAway)*rnd2;
+        koeficient.getSetKoefX = (4F + (12F / klub2.GetSetStrAway)+ (12F / klub1.GetSetStrHome))*rnd3;
         return koeficient;
     }
 }
