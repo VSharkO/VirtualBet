@@ -12,9 +12,31 @@ public class Randomizer : MonoBehaviour {
 	void Start () {
         Club[,] parovi = new Club[4, 2];
         parovi = makePairs();
-        klub1.text = parovi[1,1].GetSetIme;
-        
-       
+        klub1.text = parovi[0,0].GetSetIme;
+        klub2.text = parovi[0,1].GetSetIme;
+        klub3.text = parovi[1,0].GetSetIme;
+        klub4.text = parovi[1,1].GetSetIme;
+        klub5.text = parovi[2,0].GetSetIme;
+        klub6.text = parovi[2,1].GetSetIme;
+        klub7.text = parovi[3,0].GetSetIme;
+        klub8.text = parovi[3,1].GetSetIme;
+        koef11.text = MakeKoef(parovi[0, 0], parovi[0, 1]).getSetKoef1.ToString("0.00");
+        koef12.text = MakeKoef(parovi[0, 0], parovi[0, 1]).getSetKoef2.ToString("0.00");
+        koef1x.text = MakeKoef(parovi[0, 0], parovi[0, 1]).getSetKoefX.ToString("0.00");
+
+        koef21.text = MakeKoef(parovi[1, 0], parovi[1, 1]).getSetKoef1.ToString("0.00");
+        koef22.text = MakeKoef(parovi[1, 0], parovi[1, 1]).getSetKoef2.ToString("0.00");
+        koef2x.text = MakeKoef(parovi[1, 0], parovi[1, 1]).getSetKoefX.ToString("0.00");
+
+        koef31.text = MakeKoef(parovi[2, 0], parovi[2, 1]).getSetKoef1.ToString("0.00");
+        koef32.text = MakeKoef(parovi[2, 0], parovi[2, 1]).getSetKoef2.ToString("0.00");
+        koef3x.text = MakeKoef(parovi[2, 0], parovi[2, 1]).getSetKoefX.ToString("0.00");
+
+        koef41.text = MakeKoef(parovi[3, 0], parovi[3, 1]).getSetKoef1.ToString("0.00");
+        koef42.text = MakeKoef(parovi[3, 0], parovi[3, 1]).getSetKoef2.ToString("0.00");
+        koef4x.text = MakeKoef(parovi[3, 0], parovi[3, 1]).getSetKoefX.ToString("0.00");
+        Debug.Log(MakeKoef(parovi[0, 0], parovi[0, 1]).getSetKoef1.ToString("0.00"));
+
     }
 	
 	// Update is called once per frame
@@ -40,12 +62,12 @@ public class Randomizer : MonoBehaviour {
                 {
                     //logic here 
                     return ime;
-                }
+                }/*
                 set
                 {
                     //logic here
                     ime = value;
-                }
+                }*/
          }
         public int GetSetStrHome
         {
@@ -54,11 +76,11 @@ public class Randomizer : MonoBehaviour {
                 //logic here 
                 return strengthHome;
             }
-            set
+            /*set
             {
                 //logic here
                 strengthHome = value;
-            }
+            }*/
         }
 
         public int GetSetStrAway
@@ -68,11 +90,11 @@ public class Randomizer : MonoBehaviour {
                 //logic here 
                 return strengthAway;
             }
-            set
+            /*set
             {
                 //logic here
                 strengthAway = value;
-            }
+            }*/
         }
         public int getID
         {
@@ -85,10 +107,6 @@ public class Randomizer : MonoBehaviour {
         }
 
     }
-
-    //stvaranje kubova
-    
-    
     
     //metoda koja pravi parove
     Club[,] makePairs() {
@@ -113,7 +131,7 @@ public class Randomizer : MonoBehaviour {
         klub.Add(City);
 
         List<int> set = new List<int>();
-        while (set.Count <= 8)
+        while (set.Count < 8)
         {
             int rnd = Random.Range(0, 8);
             if (!set.Contains(rnd)) {
@@ -122,14 +140,14 @@ public class Randomizer : MonoBehaviour {
             
         }
         Club[,] parovi = new Club[4,2];
-        parovi[1, 1] = (Club)klub[set[1]];
-        parovi[1, 2] = (Club)klub[set[2]];
-        parovi[2, 1] = (Club)klub[set[3]];
-        parovi[2, 2] = (Club)klub[set[4]];
-        parovi[3, 1] = (Club)klub[set[5]];
-        parovi[3, 2] = (Club)klub[set[6]];
-        parovi[4, 1] = (Club)klub[set[7]];
-        parovi[4, 2] = (Club)klub[set[8]];
+        parovi[0, 0] = (Club)klub[set[0]];
+        parovi[0, 1] = (Club)klub[set[1]];
+        parovi[1, 0] = (Club)klub[set[2]];
+        parovi[1, 1] = (Club)klub[set[3]];
+        parovi[2, 0] = (Club)klub[set[4]];
+        parovi[2, 1] = (Club)klub[set[5]];
+        parovi[3, 0] = (Club)klub[set[6]];
+        parovi[3, 1] = (Club)klub[set[7]];
         return parovi;
     }
     //struktura koeficient
@@ -193,9 +211,9 @@ public class Randomizer : MonoBehaviour {
     //metoda koja pravi koeficijente a predamo joj dva kluba
      koef MakeKoef(Club klub1, Club klub2) {
         koef koeficient = new koef();
-        koeficient.getSetKoef1 = (12/klub1.GetSetStrHome);
-        koeficient.getSetKoef2 = (12 / klub2.GetSetStrAway);
-        koeficient.getSetKoefX = 2 + (12 / klub2.GetSetStrAway)+ (12 / klub1.GetSetStrHome);
+        koeficient.getSetKoef1 = (12F/klub1.GetSetStrHome);
+        koeficient.getSetKoef2 = (12F/klub2.GetSetStrAway);
+        koeficient.getSetKoefX = (2F + (12F / klub2.GetSetStrAway)+ (12F / klub1.GetSetStrHome));
         return koeficient;
     }
 }

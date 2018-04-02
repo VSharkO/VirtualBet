@@ -1337,7 +1337,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Real Madrid
+  m_Text: 
 --- !u!222 &573518527
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1941,7 +1941,7 @@ GameObject:
   - component: {fileID: 890730722}
   - component: {fileID: 890730721}
   m_Layer: 5
-  m_Name: koef33
+  m_Name: koef32
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2282,7 +2282,7 @@ GameObject:
   - component: {fileID: 1256888055}
   - component: {fileID: 1256888054}
   m_Layer: 5
-  m_Name: koef44
+  m_Name: koef42
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3445,6 +3445,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9db72f3ec8f68d4abd116c83e4230e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  klub1: {fileID: 573518526}
+  klub2: {fileID: 2026112236}
+  klub3: {fileID: 145117625}
+  klub4: {fileID: 633330482}
+  klub5: {fileID: 1394304705}
+  klub6: {fileID: 899423419}
+  klub7: {fileID: 112712454}
+  klub8: {fileID: 1587811645}
+  koef11: {fileID: 413143750}
+  koef12: {fileID: 615313887}
+  koef1x: {fileID: 648786115}
+  koef21: {fileID: 1668713429}
+  koef22: {fileID: 439972434}
+  koef2x: {fileID: 1699383214}
+  koef31: {fileID: 1378882016}
+  koef32: {fileID: 890730721}
+  koef3x: {fileID: 884005018}
+  koef41: {fileID: 1626759490}
+  koef42: {fileID: 1256888054}
+  koef4x: {fileID: 980389516}
 --- !u!1 &2026112234
 GameObject:
   m_ObjectHideFlags: 0
