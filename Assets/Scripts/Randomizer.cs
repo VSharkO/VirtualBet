@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 
 public class Randomizer : MonoBehaviour {
-    public Canvas canvas;
+
+    public Text klub1,klub2,klub3,klub4,klub5,klub6,klub7,klub8,koef11,koef12,koef1x,koef21,koef22,koef2x,koef31,koef32,koef3x,koef41,koef42,koef4x;
 	// Use this for initialization
 	void Start () {
-        makePairs();
-        
+        Club[,] parovi = new Club[4, 2];
+        parovi = makePairs();
+        klub1.text = parovi[1,1].GetSetIme;
         
        
     }
@@ -88,7 +91,7 @@ public class Randomizer : MonoBehaviour {
     
     
     //metoda koja pravi parove
-    void makePairs() {
+    Club[,] makePairs() {
         Club Barcelona = new Club("FC Barcelona", 10, 9, 1);
         Club Roma = new Club("AS Roma", 10, 9, 2);
         Club Sevilla = new Club("Sevilla FC", 10, 9, 3);
@@ -127,6 +130,7 @@ public class Randomizer : MonoBehaviour {
         parovi[3, 2] = (Club)klub[set[6]];
         parovi[4, 1] = (Club)klub[set[7]];
         parovi[4, 2] = (Club)klub[set[8]];
+        return parovi;
     }
     //struktura koeficient
     struct koef {
