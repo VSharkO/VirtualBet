@@ -21,4 +21,8 @@ public class sceneManager : MonoBehaviour {
     {
         SceneManager.LoadScene("Home");
     }
+    public void Result()
+    {
+        SceneManager.LoadScene("Result");
+    }
 }
