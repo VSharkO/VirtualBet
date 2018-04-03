@@ -11,10 +11,11 @@ public class Randomizer : MonoBehaviour {
     public Text klub1,klub2,klub3,klub4,klub5,klub6,klub7,klub8,koef11,koef12,koef1x,koef21,koef22,koef2x,koef31,koef32,koef3x,koef41,koef42,koef4x,posibleGain,massage,betText,PosiGainText;
     public static koef koef1, koef2, koef3, koef4;
     public static Club Klub1, Klub2, Klub3, Klub4, Klub5, Klub6, Klub7, Klub8;
-    static char[] prognoza;
+    static string[] prognoza,rezultat;
     public GameObject makeABet;
     public Image slika1, slika2, slika3, slika4;
     public Sprite yes, no;
+
 
     Club[,] parovi;
     // Use this for initialization
@@ -66,7 +67,8 @@ public class Randomizer : MonoBehaviour {
         koef42.text = koef4.getSetKoef2.ToString("0.00");
         koef4x.text = koef4.getSetKoefX.ToString("0.00");
 
-        prognoza = new char[4];
+        prognoza = new string[4] { "0","0","0","0"};
+        getResults(parovi);
         
     }
     
@@ -77,10 +79,10 @@ public class Randomizer : MonoBehaviour {
     }
     public void ShowPosibleGain() {
         double posGain;
-        prognoza[0] = bet1.text.ToCharArray()[0];
-        prognoza[1] = bet2.text.ToCharArray()[0];
-        prognoza[2] = bet3.text.ToCharArray()[0];
-        prognoza[3] = bet4.text.ToCharArray()[0];
+        prognoza[0] = bet1.text;
+        prognoza[1] = bet2.text;
+        prognoza[2] = bet3.text;
+        prognoza[3] = bet4.text;
         posGain = double.Parse(betAmount.text) * getPosGain();
         posibleGain.text = posGain.ToString("0.00")+" $";
         
@@ -88,22 +90,22 @@ public class Randomizer : MonoBehaviour {
     }
     public double getPosGain() {
         double gainKoef=1f;
-        if (prognoza[0] == '1')
+        if (prognoza[0] == "1")
         {
             gainKoef *= koef1.getSetKoef1;
         }
-        else if (prognoza[0] == '2')
+        else if (prognoza[0] == "2")
         {
             gainKoef *= koef1.getSetKoef2;
         }
         else {
             gainKoef *= koef1.getSetKoefX;
         }
-        if (prognoza[1] == '1')
+        if (prognoza[1] == "1")
         {
             gainKoef *= koef2.getSetKoef1;
         }
-        else if (prognoza[1] == '2')
+        else if (prognoza[1] == "2")
         {
             gainKoef *= koef2.getSetKoef2;
         }
@@ -111,11 +113,11 @@ public class Randomizer : MonoBehaviour {
         {
             gainKoef *= koef2.getSetKoefX;
         }
-        if (prognoza[2] == '1')
+        if (prognoza[2] == "1")
         {
             gainKoef *= koef3.getSetKoef1;
         }
-        else if (prognoza[2] == '2')
+        else if (prognoza[2] == "2")
         {
             gainKoef *= koef3.getSetKoef2;
         }
@@ -123,11 +125,11 @@ public class Randomizer : MonoBehaviour {
         {
             gainKoef *= koef3.getSetKoefX;
         }
-        if (prognoza[3] == '1')
+        if (prognoza[3] == "1")
         {
             gainKoef *= koef4.getSetKoef1;
         }
-        else if (prognoza[3] == '2')
+        else if (prognoza[3] == "2")
         {
             gainKoef *= koef4.getSetKoef2;
         }
@@ -138,43 +140,43 @@ public class Randomizer : MonoBehaviour {
         
         return gainKoef;
     }
-    public char[] getResults(Club[,] parovi)
+    public string[] getResults(Club[,] parovi)
     {
         
-        char[] rezultat = new char[4];
+        rezultat = new string[4];
         double hn1, hn2, hn3, hn4, hn5, hn6, hn7, hn8;
-        hn1 = setHightNum(parovi[0, 0]);
-        hn2 = setHightNum(parovi[0, 1]);
-        hn3 = setHightNum(parovi[1, 0]);
-        hn4 = setHightNum(parovi[1, 1]);
-        hn5 = setHightNum(parovi[2, 0]);
-        hn6 = setHightNum(parovi[2, 1]);
-        hn7 = setHightNum(parovi[3, 0]);
-        hn8 = setHightNum(parovi[3, 1]);
+        hn1 = setHightNumHome(parovi[0, 0]);
+        hn2 = setHightNumAway(parovi[0, 1]);
+        hn3 = setHightNumHome(parovi[1, 0]);
+        hn4 = setHightNumAway(parovi[1, 1]);
+        hn5 = setHightNumHome(parovi[2, 0]);
+        hn6 = setHightNumAway(parovi[2, 1]);
+        hn7 = setHightNumHome(parovi[3, 0]);
+        hn8 = setHightNumAway(parovi[3, 1]);
 
-        if (hn1 > hn2) { rezultat[0] = '1'; }
+        if (hn1-0.3 > hn2) { rezultat[0] = "1"; }
 
-        else if (hn1 < hn2) { rezultat[0] = '2'; }
+        else if (hn1 < hn2-0.3) { rezultat[0] = "2"; }
 
-        else { rezultat[0] = 'x'; }
+        else { rezultat[0] = "x"; }
 
-        if (hn3 > hn4) { rezultat[1] = '1'; }
+        if (hn3-0.3 > hn4) { rezultat[1] = "1"; }
 
-        else if (hn3 < hn4) { rezultat[1] = '2'; }
+        else if (hn3 < hn4-0.3) { rezultat[1] = "2"; }
 
-        else { rezultat[1] = 'x'; }
+        else { rezultat[1] = "x"; }
 
-        if (hn5 > hn6) { rezultat[2] = '1'; }
+        if (hn5-0.3 > hn6) { rezultat[2] = "1"; }
 
-        else if (hn5 < hn6) { rezultat[2] = '2'; }
+        else if (hn5 < hn6-0.3) { rezultat[2] = "2"; }
 
-        else { rezultat[2] = 'x'; }
+        else { rezultat[2] = "x"; }
 
-        if (hn7 > hn8) { rezultat[3] = '1'; }
+        if (hn7-0.3 > hn8) { rezultat[3] = "1"; }
 
-        else if (hn7 < hn8) { rezultat[3] = '2'; }
+        else if (hn7 < hn8-0.3) { rezultat[3] = "2"; }
 
-        else { rezultat[3] = 'x'; }
+        else { rezultat[3] = "x"; }
 
         return rezultat;
     }
@@ -354,73 +356,85 @@ public class Randomizer : MonoBehaviour {
         return koeficient;
     }
     
-    double setHightNum(Club klub)
+    double setHightNumHome(Club klub1)
     {
-        double rnd1 = Random.Range(1f, 2f);
-        return klub.GetSetStrHome * 0.6f * rnd1 * 0.4f;
+        float rnd1 = Random.Range(1f, 2f);
+        
+        return klub1.GetSetStrHome * 0.6f * rnd1;
+    }
+
+    double setHightNumAway(Club klub1)
+    {
+        float rnd1 = Random.Range(1f, 2f);
+
+        return klub1.GetSetStrAway * 0.6f * rnd1;
     }
 
     public void checkResults() {
-        Debug.Log(prognoza[0]);
-        Debug.Log(getResults(parovi)[0]);
-        Debug.Log(prognoza[1]);
-        Debug.Log(getResults(parovi)[1]);
-        Debug.Log(prognoza[2]);
-        Debug.Log(getResults(parovi)[2]);
-        Debug.Log(prognoza[3]);
-        Debug.Log(getResults(parovi)[3]);
-        slika1.enabled=(true);
-        slika2.enabled = (true);
-        slika3.enabled = (true);
-        slika4.enabled = (true);
-        massage.enabled = true;
-        PosiGainText.enabled = false;
-        betText.enabled = false;
-        makeABet.SetActive(false);
-        bet1.enabled = false;
-        bet2.enabled = false;
-        bet3.enabled = false;
-        bet4.enabled = false;
-        if (prognoza == getResults(parovi)) {
             
-            massage.text="YOU WIN " + posibleGain.text;
-            
-        }
-        else
-        {
-            massage.text = "YOU LOSE " + betAmount.text + " $";
-            massage.color = Color.red;
-        }
-        if (prognoza[0] == getResults(parovi)[0])
-        {
-            slika1.sprite = yes;
-        }
-        else {
-            slika1.sprite = no;
-        }
-        if (prognoza[1] == getResults(parovi)[1])
-        {
-            slika2.sprite = yes;
-        }
-        else
-        {
-            slika2.sprite = no;
-        }
-        if (prognoza[2] == getResults(parovi)[2])
-        {
-            slika3.sprite = yes;
-        }
-        else
-        {
-            slika3.sprite = no;
-        }
-        if (prognoza[3] == getResults(parovi)[3])
-        {
-            slika4.sprite = yes;
-        }
-        else
-        {
-            slika4.sprite = no;
-        }
-    } 
+            Debug.Log("pogađao1:"+prognoza[0]);
+            Debug.Log("rez1:" + rezultat[0]);
+            Debug.Log("pogađao2:" + prognoza[1]);
+            Debug.Log("rez2:" + rezultat[1]);
+            Debug.Log("pogađao3:" + prognoza[2]);
+            Debug.Log("rez3:" + rezultat[2]);
+            Debug.Log("pogađao4:" + prognoza[3]);
+            Debug.Log("rez4:" + rezultat[3]);
+
+            slika1.enabled = (true);
+            slika2.enabled = (true);
+            slika3.enabled = (true);
+            slika4.enabled = (true);
+            massage.enabled = true;
+            PosiGainText.enabled = false;
+            betText.enabled = false;
+            makeABet.SetActive(false);
+            bet1.enabled = false;
+            bet2.enabled = false;
+            bet3.enabled = false;
+            bet4.enabled = false;
+
+            if (prognoza[0].Equals(rezultat[0])  && prognoza[1].Equals(rezultat[1])  && prognoza[2].Equals(rezultat[2]) && prognoza[3].Equals(rezultat[3])) {
+
+                massage.text = "YOU WIN " + posibleGain.text;
+
+            }
+            else
+            {
+                massage.text = "YOU LOSE " + betAmount.text + " $";
+                massage.color = Color.red;
+            }
+            if (prognoza[0].Equals(rezultat[0]))
+            {
+                slika1.sprite = yes;
+            }
+            else {
+                slika1.sprite = no;
+            }
+            if (prognoza[1].Equals(rezultat[1]))
+            {
+                slika2.sprite = yes;
+            }
+            else
+            {
+                slika2.sprite = no;
+            }
+            if(prognoza[2].Equals(rezultat[2]))
+            {
+                slika3.sprite = yes;
+            }
+            else
+            {
+                slika3.sprite = no;
+            }
+            if (prognoza[3].Equals(rezultat[3]))
+            {
+                slika4.sprite = yes;
+            }
+            else
+            {
+                slika4.sprite = no;
+            }
+        
+    }
 }

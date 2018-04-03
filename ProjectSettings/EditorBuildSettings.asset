@@ -7,13 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scene/Home.unity
-    guid: 1933379770045a94fac585d153a534e2
+    guid: b4227d1642e21c047ba615f03be579d2
   - enabled: 1
     path: Assets/Scene/MakeTicket.unity
     guid: 3ffb2b23c9e99bc4e93df87c4889b396
-  - enabled: 1
-    path: Assets/Scene/Result.unity
-    guid: b4227d1642e21c047ba615f03be579d2
-  - enabled: 1
-    path: Assets/Scene/ShowPars.unity
-    guid: 80bd24f24320fa94f9830d65e6940291
